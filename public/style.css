@@ -1,0 +1,74 @@
+* {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 15px;
+}
+code, pre {
+  font-family: "Source Code Pro", sans-serif;
+}
+.pure-g > div {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.main-box {
+  padding: 1em;
+}
+.center {
+  text-align: center;
+}
+#request-dump table {
+  margin: 0 auto;
+}
+#request-dump table th {
+  background-color: #84909c;
+  color: #fff;
+}
+.t-pad {
+  padding-top: 1em;
+}
+.button-success,
+.button-failure,
+.button-pending,
+.button-cancel {
+  color: white;
+  border-radius: 4px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.05em;
+}
+.button-success {
+  background: rgb(28, 184, 65); /* this is a green */
+}
+.button-failure {
+  background: rgb(202, 60, 60); /* this is a maroon */
+}
+.button-pending {
+  background: rgb(223, 117, 20); /* this is an orange */
+}
+.button-cancel {
+  background: rgb(66, 184, 221); /* this is a light blue */
+}
+.button-small {
+  font-size: 85%;
+}
+.button-xsmall {
+            font-size: 70%;
+}
+.logo {
+  float: left;
+}
+code {
+  font-size: 0.9em;
+}
+.pure-table th {
+  font-size: 0.9em;
+}
+.title {
+  font-family: 'Varela Round', sans-serif;
+  font-size: 1.25em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  font-weight: bold;
+}
+table.pure-table th, table.pure-table td {
+  padding: 3px 5px 3px 5px;
+}

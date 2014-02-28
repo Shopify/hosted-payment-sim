@@ -1,0 +1,55 @@
+<% fields = request.params.select {|k, v| k.start_with? 'x_'} %>
+<div id="request-dump" class="t-pad">
+  <table class="pure-table pure-table-horizontal">
+    <thead>
+        <tr>
+            <th>key</th>
+            <th>value</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% fields.sort.each do |k, v| %>
+          <tr>
+              <td><code><%= k %></code></td>
+              <td>
+                <% if k == 'x_signature' %>
+                  <img style="vertical-align: middle;" src="/<%= signature_ok ? 'yes' : 'no' %>.png"/>
+                <% end %>
+                <code><%= v %></code>
+              </td>
+          </tr>
+        <% end %>
+    </tbody>
+  </table>
+</div>
+<div class="t-pad center">
+  <a class="execute pure-button button-success button-small tip" data-result="completed" data-callback="true" href="javascript:void(0)" data-tip="fire callback, then redirect">
+    success
+    <i class="fa fa-phone-square fa-lg"></i>
+    <i class="fa fa-shopping-cart fa-lg"></i>
+  </a>
+  <a class="execute pure-button button-success button-small tip" data-result="completed" data-callback="false" href="javascript:void(0)" data-tip="do not fire callback, simply redirect">
+    success
+    <i class="fa fa-shopping-cart fa-lg"></i>
+  </a>
+  <a class="execute pure-button button-pending button-small tip" data-result="pending" data-callback="true" href="javascript:void(0)" data-tip="fire callback, then redirect">
+    pending
+    <i class="fa fa-phone-square fa-lg"></i>
+    <i class="fa fa-shopping-cart fa-lg"></i>
+  </a>
+  <a class="execute pure-button button-pending button-small tip" data-result="pending" data-callback="false" href="javascript:void(0)" data-tip="do not fire callback, simply redirect">
+    pending
+    <i class="fa fa-shopping-cart fa-lg"></i>
+  </a>
+  <a class="execute pure-button button-failure button-small tip" data-result="failed" data-callback="true" href="javascript:void(0)" data-tip="fire callback, then redirect">
+    failure
+    <i class="fa fa-phone-square fa-lg"></i>
+    <i class="fa fa-shopping-cart fa-lg"></i>
+  </a>
+  <a class="execute pure-button button-failure button-small tip" data-result="failed" data-callback="false" href="javascript:void(0)" data-tip="do not fire callback, simply redirect">
+    failure
+    <i class="fa fa-shopping-cart fa-lg"></i>
+  </a>
+  <a class="pure-button button-cancel button-small" href="<%= fields['x-url-cancel'] %>">cancel</a>
+</div>
+<div id="result" class="t-pad center"></div>
