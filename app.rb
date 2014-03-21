@@ -3,8 +3,7 @@ require 'bundler/setup'
 require 'sinatra'
 require 'httparty'
 require 'json'
-require 'byebug'
-require "addressable/uri"
+require 'addressable/uri'
 
 post '/' do
   erb :index
