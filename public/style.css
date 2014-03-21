@@ -60,6 +60,6 @@ code {
   padding-left: 0.5em;
   font-weight: bold;
 }
-table.pure-table td {
-  padding: 3px;
+table.pure-table th, table.pure-table td {
+  padding: 3px 5px 3px 5px;
 }
