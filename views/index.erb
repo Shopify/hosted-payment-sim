@@ -6,16 +6,21 @@
   <title>offsite simulator ★ shopify</title>
   <link rel="stylesheet" href="//yui.yahooapis.com/pure/0.4.2/pure-min.css">
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" >
-  <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Varela+Round">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro">
   <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/tipr.css">
 </head>
 <body>
 <div class="pure-g">
   <div class="pure-u-1-1 main-box">
     <div class="center">
-      <img style="vertical-align: middle;" src="/shopify.png"/><span class="title">offsite simulator</span>
+      <img style="vertical-align: middle;" src="/shopify.png"/>
+      <span class="title">offsite simulator</span>
+      <a class="pure-button button-small" href="https://github.com/Shopify/offsite-gateway-sim">
+          <i class="fa fa-github"></i>
+          GitHub
+      </a>
     </div>
     <div id="request-dump" class="t-pad">
       <table class="pure-table pure-table-horizontal">
@@ -41,43 +46,43 @@
       </table>
     </div>
     <div class="t-pad center">
-      <a class="execute pure-button button-success" data-result="success" data-callback="true" href="javascript:void(0)" title="fire callback, then redirect">
+      <a class="execute pure-button button-success button-small tip" data-result="success" data-callback="true" href="javascript:void(0)" data-tip="fire callback, then redirect">
         success
         <i class="fa fa-phone-square fa-lg"></i>
         <i class="fa fa-shopping-cart fa-lg"></i>
       </a>
-      <a class="execute pure-button button-success" data-result="success" data-callback="false" href="javascript:void(0)" title="do not fire callback, simply redirect">
+      <a class="execute pure-button button-success button-small tip" data-result="success" data-callback="false" href="javascript:void(0)" data-tip="do not fire callback, simply redirect">
         success
         <i class="fa fa-shopping-cart fa-lg"></i>
       </a>
-      <a class="execute pure-button button-pending" data-result="pending" data-callback="true" href="javascript:void(0)" title="fire callback, then redirect">
+      <a class="execute pure-button button-pending button-small tip" data-result="pending" data-callback="true" href="javascript:void(0)" data-tip="fire callback, then redirect">
         pending
         <i class="fa fa-phone-square fa-lg"></i>
         <i class="fa fa-shopping-cart fa-lg"></i>
       </a>
-      <a class="execute pure-button button-pending" data-result="pending" data-callback="false" href="javascript:void(0)" title="do not fire callback, simply redirect">
+      <a class="execute pure-button button-pending button-small tip" data-result="pending" data-callback="false" href="javascript:void(0)" data-tip="do not fire callback, simply redirect">
         pending
         <i class="fa fa-shopping-cart fa-lg"></i>
       </a>
-      <a class="execute pure-button button-failure" data-result="failure" data-callback="true" href="javascript:void(0)" title="fire callback, then redirect">
+      <a class="execute pure-button button-failure button-small tip" data-result="failure" data-callback="true" href="javascript:void(0)" data-tip="fire callback, then redirect">
         failure
         <i class="fa fa-phone-square fa-lg"></i>
         <i class="fa fa-shopping-cart fa-lg"></i>
       </a>
-      <a class="execute pure-button button-failure" data-result="failure" data-callback="false" href="javascript:void(0)" title="do not fire callback, simply redirect">
+      <a class="execute pure-button button-failure button-small tip" data-result="failure" data-callback="false" href="javascript:void(0)" data-tip="do not fire callback, simply redirect">
         failure
         <i class="fa fa-shopping-cart fa-lg"></i>
       </a>
-      <a class="pure-button button-cancel" href="<%= fields['x-url-cancel'] %>">cancel</a>
+      <a class="pure-button button-cancel button-small" href="<%= fields['x-url-cancel'] %>">cancel</a>
     </div>
     <div id="result" class="t-pad center"></div>
   </div>
 </div>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+<script src="/tipr.js"></script>
 <script>
   $(document).ready(function() {
-    $(document).tooltip();
+    $('.tip').tipr();
     $('a.execute').on('click',function(){
       data = <%= fields.to_json %>
       action = $(this).attr('data-result')
