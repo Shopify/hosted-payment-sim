@@ -6,7 +6,7 @@ This is a work-in-progress implementation of a generic offsite simulator for Sho
 ### Instructions
 
 Payment processor must provide the following items to Shopify,
-+ ``label:`` Label for the offsite gateway
++ ``label:`` Label for the offsite gateway that shop owners will see when configuring it in Admin/Settings/Checkout
 + ``credential1:`` Label for the ``x-account-id`` parameter, which will be visible to the merchant under Admin/Settings/Checkout
 + ``credential2:`` Label for the HMAC secret key, which will be visible to the merchant Admin/Settings/Checkout
 + ``option1:`` URL of a POST handler for **Request Values** listed below that presents a payment flow to the customer
@@ -83,7 +83,7 @@ OpenSSL::HMAC.hexdigest(digest, "secret key", "x-a=1x-b=2")
 | ``x-transaction-type``     | ascii string                                                  |           |                                          |                                                                                  |
 | ``x-description``          | unicode string                                                |           | Order #123                               |                                                                                  |
 | ``x-invoice``              | unicode string                                                |           | #123                                     |                                                                                  |
-| ``x-test``                 | true/false                                                    | ✓         | true                                     |                                                                                  |
+| ``x-test``                 | true/false                                                    | ✓         | true                                     | Indicates whether or not this request should be processed in test mode (if supported). |
 | ``x-reference``            | ascii string                                                  | ✓         | 19783                                    | Unique reference of an order assigned by the merchant.                           |
 | ``x-customer-first-name``  | unicode string                                                |           | Boris                                    |                                                                                  |
 | ``x-customer-last-name``   | unicode string                                                |           | Slobodin                                 |                                                                                  |
@@ -100,17 +100,18 @@ OpenSSL::HMAC.hexdigest(digest, "secret key", "x-a=1x-b=2")
 | ``x-url-cancel``           | url                                                           | ✓         | https://myshopify.io                     | URL to which customer must be redirected when they wish to quit payment flow and return to the merchant's site. |
 | ``x-url-complete``         | url                                                           | ✓         | https://myshopify.io/orders/1/done       | URL to which customer must be redirected upon completing payment flow regardless of outcome. |
 | ``x-timestamp``            | [iso-8601](http://en.wikipedia.org/wiki/ISO_8601)             | ✓         | 2014-03-24T12:13:12Z                     |                                                                                  |
-| ``x-signature``            | hex string                                                    | ✓         | 3a59e201a9b8692702b8c41dcba476d4a46e5f5c |                                                                                  |
+| ``x-signature``            | hex string                                                    | ✓         | 3a59e201a9b8692702b8c41dcba476d4a46e5f5c | See [Signing Mechanism](#signing-mechanism).                                     |
 
 ### Response Values
 
-| Key                     | Type                                              | Mandatory | Example              | Comment                                                                 |
-| ------------------------|:-------------------------------------------------:|:---------:|----------------------|-------------------------------------------------------------------------|
-| ``x-account-id``        | unicode string                                    | ✓         | Z9s7Yt0Txsqbbx       | Echo request's ``x-account-id``                                         |
-| ``x-reference``         | ascii string                                      | ✓         | 19783                | Echo request's ``x-reference``                                          |
-| ``x-currency``          | [iso-4217](http://en.wikipedia.org/wiki/ISO_4217) | ✓         | USD                  | Echo request's ``x-currency``                                           |
-| ``x-test``              | true/false                                        | ✓         | true                 | Echo request's ``x-test``                                               |
-| ``x-amount``            | decimal                                           | ✓         | 89.99                | Echo request's ``x-amount``                                             |
-| ``x-gateway-reference`` | unicode string                                    | ✓         | 123                  | Unique reference for the authorization issued by the payment processor. |
-| ``x-timestamp``         | [iso-8601](http://en.wikipedia.org/wiki/ISO_8601) | ✓         | 2014-03-24T12:15:41Z |                                                                         |
-| ``x-result``            | fixed choice                                      | ✓         | 123                  | One of: success, pending, failure                                       |
+| Key                     | Type                                              | Mandatory | Example                                  | Comment                                                                 |
+| ------------------------|:-------------------------------------------------:|:---------:|------------------------------------------|-------------------------------------------------------------------------|
+| ``x-account-id``        | unicode string                                    | ✓         | Z9s7Yt0Txsqbbx                           | Echo request's ``x-account-id``                                         |
+| ``x-reference``         | ascii string                                      | ✓         | 19783                                    | Echo request's ``x-reference``                                          |
+| ``x-currency``          | [iso-4217](http://en.wikipedia.org/wiki/ISO_4217) | ✓         | USD                                      | Echo request's ``x-currency``                                           |
+| ``x-test``              | true/false                                        | ✓         | true                                     | Echo request's ``x-test``                                               |
+| ``x-amount``            | decimal                                           | ✓         | 89.99                                    | Echo request's ``x-amount``                                             |
+| ``x-gateway-reference`` | unicode string                                    | ✓         | 123                                      | Unique reference for the authorization issued by the payment processor. |
+| ``x-timestamp``         | [iso-8601](http://en.wikipedia.org/wiki/ISO_8601) | ✓         | 2014-03-24T12:15:41Z                     |                                                                         |
+| ``x-result``            | fixed choice                                      | ✓         | 123                                      | One of: success, pending, failure                                       |
+| ``x-signature``         | hex string                                        | ✓         | 3a59e201a9b8692702b8c41dcba476d4a46e5f5c | See [Signing Mechanism](#signing-mechanism).                                     |
