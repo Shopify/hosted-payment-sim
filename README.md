@@ -122,6 +122,7 @@ OpenSSL::HMAC.hexdigest(digest, "secret key", "x-a=1x-b=2")
 ### Outstanding Questions
 
 + Should we use a different prefix?
++ Should we express all amounts in minor units (i.e. 1234 for USD12.34 and 1000 for JPY1,000)?
 + Should we add some fields? Should we remove some fields? Should we clarify some of the fields' types?
 + Do we need to timestamp all requests/responses? It's quite common, but I'm not convinced it provides any value.
 + Can we initiate an offsite using a GET, ideally a 302? One concern with that, is that contents of the request (including personally identifiable information) are likely to be logged by load balancers, web servers, web frameworks etcetera.
