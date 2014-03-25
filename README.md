@@ -1,17 +1,15 @@
 Shopify Offsite Simulator
 ===========================
 
-This is a work-in-progress implementation of a generic offsite simulator for Shopify.
+This is an idea we are exploring to simplify onboarding of new offsite gateways. By implementing a common offsite API for redirect/cancel/complete/callback phases, we can avoid having to touch Active Merchant code altogether. Instead, payment processor who implements this API must simply provide the following items to Shopify,
 
-### Instructions
-
-Payment processor must provide the following items to Shopify,
 + ``label:`` Label for the offsite gateway that shop owners will see when configuring it in Admin/Settings/Checkout
 + ``credential1:`` Label for the ``x-account-id`` parameter, which will be visible to the merchant under Admin/Settings/Checkout
 + ``credential2:`` Label for the HMAC secret key, which will be visible to the merchant Admin/Settings/Checkout
 + ``option1:`` URL of a POST handler for **Request Values** listed below that presents a payment flow to the customer
 + ``test_mode:`` Indicator of whether or not ``x-test`` mode is supported
-+ ``url:`` Affiliate URL of a payment processor, if available
++ ``url:`` URL of a payment processor's home page, ideally with an affiliate identifier for revenue sharing, if available
++ ``/public/images/admin/icons/payment/{gateway_name}_cards.png``: image to display to customers during checkout process (PNG, height: 20px, max width: 350px)
 
 #### Example entry in payment_providers.yml
 ```yml
@@ -49,7 +47,7 @@ Payment processor must provide the following items to Shopify,
 
 ### Payment Flow
 
-+ Customer initiates checkout
++ Customer initiates checkout on Shopify
 + Browser is redirected to ``option1:`` URL using a POST request along with [Request Values](#request-values) (mandatory + whatever else is available)
 + Processor verifies ``x-signature`` value and presents their own payment flow to the customer (see [Signing Mechanism](#signing-mechanism))
 + Customers who quit the payment flow without completing it, should be redirected back to ``x-url-cancel``
@@ -115,3 +113,10 @@ OpenSSL::HMAC.hexdigest(digest, "secret key", "x-a=1x-b=2")
 | ``x-timestamp``         | [iso-8601](http://en.wikipedia.org/wiki/ISO_8601) | ✓         | 2014-03-24T12:15:41Z                     |                                                                         |
 | ``x-result``            | fixed choice                                      | ✓         | 123                                      | One of: success, pending, failure                                       |
 | ``x-signature``         | hex string                                        | ✓         | 3a59e201a9b8692702b8c41dcba476d4a46e5f5c | See [Signing Mechanism](#signing-mechanism).                                     |
+
+### Outstanding Questions
+
++ Do we absolutely need to have signing support? I feel like we do, but assuming HTTPS for all communication, simply sharing and comparing secret key may be enough instead?
++ Do we need to timestamp all requests/responses? It's quite common, but I'm not convinced it provides any value.
++ Can we initiate an offsite using a GET, ideally a 302? One concern with that, is that contents of the request are likely to be logged by load balancers, web servers, web frameworks etcetera, which would be unacceptable if we remove signing requirement, for example.
++ How should we express things like line items, shipping lines, discount lines etcetera in our [Request Values](#request-values)?
