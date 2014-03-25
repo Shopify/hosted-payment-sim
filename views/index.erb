@@ -29,7 +29,12 @@
             <% fields.sort.each do |k, v| %>
               <tr>
                   <td><code><%= k %></code></td>
-                  <td><code><%= v %></code></td>
+                  <td>
+                    <% if k == 'x-signature' %>
+                      <img style="vertical-align: middle;" src="/<%= signature_ok ? 'yes' : 'no' %>.png"/>
+                    <% end %>
+                    <code><%= v %></code>
+                  </td>
               </tr>
             <% end %>
         </tbody>
