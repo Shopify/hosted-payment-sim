@@ -45,9 +45,14 @@ This is an idea we are exploring to simplify onboarding of new offsite gateways.
    - american_express
 ```
 
+### Shop Configuration Flow
+
++ Shop admin selects ``Comrade Yuri's Payments Emporium`` in Admin/Settings/Checkout
++ They obtain values for ``Account ID`` and ``Account Secret`` from the gateway and enter them into respective fields
+
 ### Payment Flow
 
-+ Customer initiates checkout on Shopify
++ Customer initiates checkout on the Shopify storefront
 + Browser is redirected to ``option1:`` URL using a POST request along with [Request Values](#request-values) (mandatory + whatever else is available)
 + Processor verifies ``x-signature`` value and presents their own payment flow to the customer (see [Signing Mechanism](#signing-mechanism))
 + Customers who quit the payment flow without completing it, should be redirected back to ``x-url-cancel``
@@ -116,6 +121,8 @@ OpenSSL::HMAC.hexdigest(digest, "secret key", "x-a=1x-b=2")
 
 ### Outstanding Questions
 
++ Should we use a different prefix?
++ Should we add some fields? Should we remove some fields? Should we clarify some of the fields' types?
 + Do we need to timestamp all requests/responses? It's quite common, but I'm not convinced it provides any value.
 + Can we initiate an offsite using a GET, ideally a 302? One concern with that, is that contents of the request (including personally identifiable information) are likely to be logged by load balancers, web servers, web frameworks etcetera.
 + How should we express things like line items, shipping lines, discount lines etcetera in our [Request Values](#request-values)?
