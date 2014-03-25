@@ -54,7 +54,7 @@ This is an idea we are exploring to simplify onboarding of new offsite gateways.
 + Customers who complete the payment flow, should be redirected back to ``x-url-complete`` with all required [Response Values](#response-values) as query parameters, including ``x-signature`` (see [Signing Mechanism](#signing-mechanism))
 + Processor is also encouraged (but not required) to POST a callback asynchronously to ``x-url-callback`` with the same [Response Values](#response-values), in case customer closes the browser prematurely
  + HTTP 200 indicates successful receipt of a callback by Shopify, otherwise up to 5 retries with an interval of at least 60 seconds are recommended
- + duplicate notifications for the same ``x-reference`` are ignored by Shopify
+ + Duplicate notifications for the same ``x-reference`` are ignored by Shopify
 
 ### Signing Mechanism
 
@@ -116,7 +116,6 @@ OpenSSL::HMAC.hexdigest(digest, "secret key", "x-a=1x-b=2")
 
 ### Outstanding Questions
 
-+ Do we absolutely need to have signing support? I feel like we do, but assuming HTTPS for all communication, simply sharing and comparing secret key may be enough instead?
 + Do we need to timestamp all requests/responses? It's quite common, but I'm not convinced it provides any value.
-+ Can we initiate an offsite using a GET, ideally a 302? One concern with that, is that contents of the request are likely to be logged by load balancers, web servers, web frameworks etcetera, which would be unacceptable if we remove signing requirement, for example.
++ Can we initiate an offsite using a GET, ideally a 302? One concern with that, is that contents of the request (including personally identifiable information) are likely to be logged by load balancers, web servers, web frameworks etcetera.
 + How should we express things like line items, shipping lines, discount lines etcetera in our [Request Values](#request-values)?
