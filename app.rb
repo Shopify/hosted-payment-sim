@@ -14,7 +14,7 @@ class OffsiteGatewaySim < Sinatra::Base
   end
 
   def fields
-    @fields ||= request.params.select {|k, v| k.start_with? 'x-'}
+    @fields ||= request.params.select {|k, v| k.start_with? 'x_'}
   end
 
   def sign(fields)
@@ -22,28 +22,30 @@ class OffsiteGatewaySim < Sinatra::Base
   end
 
   post '/' do
-    signature_ok = sign(fields.reject{|k,_| k == 'x-signature'}) == fields['x-signature']
+    provided_signature = fields['x_signature']
+    expected_signature = sign(fields.reject{|k,_| k == 'x_signature'})
+    signature_ok = provided_signature && provided_signature.casecmp(expected_signature) == 0
     erb :index, :locals => {signature_ok: signature_ok}
   end
 
   post '/execute/:action' do |action|
     ts = Time.now.utc.iso8601
     payload = {
-      'x-id'                => fields['x-id'],
-      'x-reference'         => fields['x-reference'],
-      'x-currency'          => fields['x-currency'],
-      'x-test'              => fields['x-test'],
-      'x-amount'            => fields['x-amount'],
-      'x-result'            => action,
-      'x-gateway-reference' => SecureRandom.hex,
-      'x-timestamp'         => ts
+      'x_account_id'        => fields['x_id'],
+      'x_reference'         => fields['x_reference'],
+      'x_currency'          => fields['x_currency'],
+      'x_test'              => fields['x_test'],
+      'x_amount'            => fields['x_amount'],
+      'x_result'            => action,
+      'x_gateway_reference' => SecureRandom.hex,
+      'x_timestamp'         => ts
       }
-    payload['x-signature'] = sign(payload)
+    payload['x_signature'] = sign(payload)
     result = {timestamp: ts}
-    redirect_url = Addressable::URI.parse(fields['x-url-complete'])
+    redirect_url = Addressable::URI.parse(fields['x_url_complete'])
     redirect_url.query_values = payload
     if request.params['fire_callback'] == 'true'
-      callback_url = fields['x-url-callback']
+      callback_url = fields['x_url_callback']
       response = HTTParty.post(callback_url, body: payload)
       if response.code == 200
         result[:redirect] = redirect_url
