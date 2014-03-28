@@ -58,7 +58,7 @@ This is an idea we are exploring to simplify onboarding of new offsite gateways.
 + Processor verifies ``x_signature`` value and presents their own payment flow to the customer (see [Signing Mechanism](#signing-mechanism))
 + Customers who exit the payment flow without successfully completing it, should be redirected back to ``x_url_cancel``
 + Customers who complete the payment flow, should be redirected back to ``x_url_complete`` with all required [Response Values](#response-values) as query parameters, including ``x_signature`` (see [Signing Mechanism](#signing-mechanism))
-+ Processor is also required to POST a callback asynchronously to ``x_url_callback`` with the same [Response Values](#response-values), this ensures that order can be completed even in cases where customer closes the browser prematurely
++ Processor is also recommeded to POST a callback asynchronously to ``x_url_callback`` with the same [Response Values](#response-values), this ensures that order can be completed even in cases where customer closes the browser prematurely
  + HTTP 200 indicates successful receipt of a callback by Shopify, otherwise up to 5 retries with an interval of at least 60 seconds are recommended
  + Duplicate notifications for the same ``x_reference`` are ignored by Shopify
 
