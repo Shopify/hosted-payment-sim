@@ -46,6 +46,12 @@ code, pre {
 .button-cancel {
   background: rgb(66, 184, 221); /* this is a light blue */
 }
+.button-small {
+  font-size: 85%;
+}
+.button-xsmall {
+            font-size: 70%;
+}
 .logo {
   float: left;
 }
@@ -58,6 +64,7 @@ code {
 .title {
   font-size: 130%;
   padding-left: 0.5em;
+  padding-right: 0.5em;
   font-weight: bold;
 }
 table.pure-table th, table.pure-table td {
