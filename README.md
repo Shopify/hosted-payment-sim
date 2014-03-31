@@ -58,10 +58,14 @@ All requests and responses must be signed/verified using ``HMAC-SHA256`` ([HMAC]
 For example,
 
 ```ruby
-digest = OpenSSL::Digest.new('sha256')
-OpenSSL::HMAC.hexdigest(digest, 'secret key', 'x_a=1x_b=2')
+fields = {x_account_id: 123, x_currency: 'USD'}
+=> {:x_account_id=>123, :x_currency=>"USD"}
+message = fields.sort.join
+=> "x_account_id123x_currencyUSD"
+OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha256'), 'secret key', message)
+=> "06ef4be2654e089b4aa346f970a71988fa3a1452acaa6273573f9db0c32ea355"
 
-"x_signature=4c1c3fff26e479fbb6fba4148f98cc257936b57e89877b43b1306e7591a0c534"
+"x_signature=06ef4be2654e089b4aa346f970a71988fa3a1452acaa6273573f9db0c32ea355"
 ```
 
 ### Request Values
