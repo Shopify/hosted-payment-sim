@@ -8,7 +8,7 @@ This is a common API that simplifies the onboarding of new payment providers, sp
 Follow these simple steps to get started.
 
 1. Review the rest of this document
-2. Sign up for a free trial of Shopify at http://www.shopify.com/try. You will use this shop to place test orders against your offsite gateway.
+2. Sign up for a free trial of Shopify at http://www.shopify.com/. You will use this shop to place test orders against your offsite gateway.
 3. Send the name of this shop to payment-integrations@shopify.com and mention **Universal Offsite Dev Kit** in the subject
 
 Once we enable developer mode, which normally happens the same day, you'll be ready to proceed with integration testing.
