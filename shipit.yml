@@ -1,0 +1,6 @@
+dependencies:
+  override: []
+
+deploy:
+  override:
+    - git push git@heroku.com:offsite-gateway-sim.git $SHA:master
