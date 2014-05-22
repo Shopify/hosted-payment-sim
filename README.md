@@ -54,12 +54,14 @@ All requests and responses must be signed/verified using ``HMAC-SHA256`` ([HMAC]
 + ``message`` is a string of all key-value pairs that start with ``x_`` prefix, sorted alphabetically, and concatenated without any separators
   + Resulting codes must be hex-encoded and passed as value of ``x_signature``
   + Make sure to use case-insensitive comparison when verifying provided ``x_signature`` values
+  + A key-value pair shouldn't be included in the ``message`` string when it's value is empty
 
 For example,
 
 ```ruby
 fields = {x_account_id: 123, x_currency: 'USD'}
 => {:x_account_id=>123, :x_currency=>"USD"}
+fields.delete_if {|k,v| v.nil? }
 message = fields.sort.join
 => "x_account_id123x_currencyUSD"
 OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha256'), 'secret key', message)
