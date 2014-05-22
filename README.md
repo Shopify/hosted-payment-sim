@@ -88,6 +88,8 @@ OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha256'), 'secret key', message)
 | ``x_customer_last_name``           | unicode string                                                |           | Slobodin                                 |                                                                                  |
 | ``x_customer_email``               | unicode string                                                |           | boris.slobodin@example.com               |                                                                                  |
 | ``x_customer_phone``               | unicode string                                                |           | +1-613-987-6543                          |                                                                                  |
+| ``x_customer_shipping_first_name`` | unicode string                                                |           | Boris                                    |                                                                                  |
+| ``x_customer_shipping_last_name``  | unicode string                                                |           | Slobodin                                 |                                                                                  |
 | ``x_customer_shipping_city``       | unicode string                                                |           | Toronto                                  |                                                                                  |
 | ``x_customer_shipping_company``    | unicode string                                                |           | Shopify Toronto                          |                                                                                  |
 | ``x_customer_shipping_address1``   | unicode string                                                |           | 241 Spadina Ave                          |                                                                                  |
@@ -99,7 +101,6 @@ OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha256'), 'secret key', message)
 | ``x_url_callback``                 | url                                                           | ✓         | https://myshopify.io/ping/1              | URL to which a callback notification should be sent asynchronously.              |
 | ``x_url_cancel``                   | url                                                           | ✓         | https://myshopify.io                     | URL to which customer must be redirected when they wish to quit payment flow and return to the merchant's site. |
 | ``x_url_complete``                 | url                                                           | ✓         | https://myshopify.io/orders/1/done       | URL to which customer must be redirected upon successfully completing payment flow. |
-| ``x_timestamp``                    | [iso-8601](http://en.wikipedia.org/wiki/ISO_8601) in UTC      | ✓         | 2014-03-24T12:13:12Z                     |                                                                                  |
 | ``x_signature``                    | hex string, case-insensitive                                  | ✓         | 3a59e201a9b8692702b8c41dcba476d4a46e5f5c | See [Signing Mechanism](#signing-mechanism).                                     |
 
 ### Response Values
