@@ -3,4 +3,4 @@ dependencies:
 
 deploy:
   override:
-    - git push git@heroku.com:offsite-gateway-sim.git $SHA:master
+    - push-to-heroku offsite-gateway-sim
