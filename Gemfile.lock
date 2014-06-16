@@ -7,15 +7,32 @@ GEM
       debugger-linecache (~> 1.2)
     columnize (0.3.6)
     debugger-linecache (1.2.0)
+    excon (0.37.0)
+    heroku (3.8.3)
+      heroku-api (~> 0.3.17)
+      launchy (>= 0.3.2)
+      netrc (~> 0.7.7)
+      rest-client (~> 1.6.1)
+      rubyzip
+    heroku-api (0.3.18)
+      excon (~> 0.27)
+      multi_json (~> 1.8)
     httparty (0.10.0)
       multi_json (~> 1.0)
       multi_xml
     json (1.8.1)
-    multi_json (1.8.4)
+    launchy (2.4.2)
+      addressable (~> 2.3)
+    mime-types (2.3)
+    multi_json (1.10.1)
     multi_xml (0.5.5)
+    netrc (0.7.7)
     rack (1.5.2)
     rack-protection (1.5.2)
       rack
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
+    rubyzip (1.1.4)
     sinatra (1.4.4)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -28,6 +45,7 @@ PLATFORMS
 DEPENDENCIES
   addressable
   byebug
+  heroku (~> 3.8.2)
   httparty
   json
   sinatra

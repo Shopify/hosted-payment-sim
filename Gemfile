@@ -9,3 +9,6 @@ gem 'addressable'
 group :development do
   gem 'byebug'
 end
+group :deploy do
+  gem 'heroku', '~> 3.8.2'
+end
