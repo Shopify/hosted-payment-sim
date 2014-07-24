@@ -24,17 +24,6 @@ Once we enable developer mode, which normally happens the same day, you'll be re
 
 > We are providing this simple implementation of an Offsite Gateway Sim as a way to demonstrate basics of this new API. If you want to see it in action, leave ``POST URL`` on your **Universal Offsite Dev Kit** empty, or set it to ``https://offsite-gateway-sim.herokuapp.com/``, then try placing another order in your test shop.
 
-As soon as you are confident that your implementation is complete, we'll need to collect some more information about your gateway,
-
-  + Labels for any fields that your gateway will require shops to input when setting it up within Shopify.
-    + Your gateway name
-    + Label for the ``x_account_id`` field, needs to match your existing terminology, e.g. ``Merchant ID`` or ``Account #``
-    + Label for the ``HMAC key`` field, needs to match your existing terminology, e.g. ``Key`` or ``Shared Secret``
-  + URL of a POST handler for [Request Values](#request-values) that presents a payment flow to the customer, likely the same one you used to configure *Universal Offsite Dev Kit* gateway during integration testing
-  + Your gateway's home page URL
-  + Image to display to customers during checkout process that identifies your gateway and/or supported payment options (PNG, height: 20px, max width: 340px)
-  + Finally, please indicate whether or not your gateway supports ``x_test`` mode
-
 ### Payment Flow
 
 + Customer initiates checkout on the Shopify storefront
@@ -67,6 +56,20 @@ OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha256'), 'secret key', message)
 
 "x_signature=06ef4be2654e089b4aa346f970a71988fa3a1452acaa6273573f9db0c32ea355"
 ```
+
+### Going Live
+
+As soon as you are confident that your implementation is complete, we'll need to collect some more information about your gateway,
+
+  + Labels for any fields that your gateway will require shops to input when setting it up within Shopify.
+    + Your gateway name
+    + Label for the ``x_account_id`` field, needs to match your existing terminology, e.g. ``Merchant ID`` or ``Account #``
+    + Label for the ``HMAC key`` field, needs to match your existing terminology, e.g. ``Key`` or ``Shared Secret``
+  + URL of a POST handler for [Request Values](#request-values) that presents a payment flow to the customer, likely the same one you used to configure *Universal Offsite Dev Kit* gateway during integration testing
+  + Your gateway's home page URL
+  + Image to display to customers during checkout process that identifies your gateway and/or supported payment options (PNG, height: 20px, max width: 340px)
+  + Finally, please indicate whether or not your gateway supports ``x_test`` mode
+
 
 ### Request Values
 
