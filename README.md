@@ -61,13 +61,13 @@ OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha256'), 'secret key', message)
 
 As soon as you are confident that your implementation is complete, we'll need to collect some more information about your gateway,
 
-  + Labels for any fields that your gateway will require shops to input when setting it up within Shopify.
+  + Names for any fields that your gateway will require shops to input when setting it up within Shopify.
     + Your gateway name
     + Label for the ``x_account_id`` field, needs to match your existing terminology, e.g. ``Merchant ID`` or ``Account #``
     + Label for the ``HMAC key`` field, needs to match your existing terminology, e.g. ``Key`` or ``Shared Secret``
   + URL of a POST handler for [Request Values](#request-values) that presents a payment flow to the customer, likely the same one you used to configure *Universal Offsite Dev Kit* gateway during integration testing
   + Your gateway's home page URL
-  + Image to display to customers during checkout process that identifies your gateway and/or supported payment options (PNG, height: 20px, max width: 340px)
+  + Image to display to customers during checkout process that identifies your gateway's supported payment options (PNG, height: 20px, max width: 340px). You may or may not want to include your gateway's logo along with this list, depending on whether it will be recognized by customers on checkout.
   + Finally, please indicate whether or not your gateway supports ``x_test`` mode
 
 
