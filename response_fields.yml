@@ -1,0 +1,39 @@
+-
+  name: Account ID
+  key: x_account_id
+  placeholder: Z9s7Yt0Txsqbbx
+
+-
+  name: Reference
+  key: x_reference
+  placeholder: '19783'
+
+-
+  name: Currency
+  key: x_currency
+  placeholder: USD
+
+-
+  name: Test
+  key: x_test
+  placeholder: 'true'
+
+-
+  name: Amount
+  key: x_amount
+  placeholder: '89.99'
+
+-
+  name: Gateway Reference
+  key: x_gateway_reference
+  placeholder: '123'
+
+-
+  name: Timestamp
+  key: x_timespamp
+  placeholder: '2014-03-24T12:15:41Z'
+
+-
+  name: Result
+  key: x_result
+  placeholder: completed

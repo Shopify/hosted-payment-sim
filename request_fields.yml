@@ -1,0 +1,112 @@
+- 
+  key: x_account_id
+  name: "Account ID"
+  placeholder: Z9s7Yt0Txsqbbx
+- 
+  key: x_currency
+  name: Currency
+  placeholder: USD
+- 
+  key: x_amount
+  name: Amount
+  placeholder: 89.99
+- 
+  key: x_amount_shipping
+  name: "Amount Shipping"
+  placeholder: 8.99
+- 
+  key: x_amount_tax
+  name: "Amount Tax"
+  placeholder: 11.7
+- 
+  key: x_reference
+  name: Reference
+  placeholder: 19783
+- 
+  key: x_shop_country
+  name: "Shop Country"
+  placeholder: US
+- 
+  key: x_shop_name
+  name: "Shop Name"
+  placeholder: "Widgets Inc"
+- 
+  key: x_transaction_type
+  name: "Transaction Type"
+  placeholder: sale
+- 
+  key: x_description
+  name: Description
+  placeholder: Order
+- 
+  key: x_invoice
+  name: Invoice
+  placeholder: ~
+- 
+  key: x_test
+  name: Test
+  placeholder: true
+- 
+  key: x_customer_first_name
+  name: "Customer First Name"
+  placeholder: Boris
+- 
+  key: x_customer_last_name
+  name: "Customer Last Name"
+  placeholder: Slobodin
+- 
+  key: x_customer_email
+  name: "Customer Email"
+  placeholder: boris.slobodin@example.com
+- 
+  key: x_customer_phone
+  name: "Customer Phone"
+  placeholder: +1-613-987-6543
+- 
+  key: x_customer_shipping_city
+  name: "Customer Shipping City"
+  placeholder: Transactionronto
+- 
+  key: x_customer_shipping_company
+  name: "Customer Shipping Company"
+  placeholder: "Shopify Toronto"
+- 
+  key: x_customer_shipping_address1
+  name: "Customer Shipping Address1"
+  placeholder: "241 Spadina Ave"
+- 
+  key: x_customer_shipping_address2
+  name: "Customer Shipping Address2"
+  placeholder: ~
+- 
+  key: x_customer_shipping_state
+  name: "Customer Shipping State"
+  placeholder: true
+- 
+  key: x_customer_shipping_zip
+  name: "Customer Shipping Zip"
+  placeholder: "M5T 3A8"
+- 
+  key: x_customer_shipping_country
+  name: "Customer Shipping Country"
+  placeholder: CA
+- 
+  key: x_customer_shipping_phone
+  name: "Customer Shipping Phone"
+  placeholder: +1-416-123-4567
+- 
+  key: x_url_callback
+  name: "Url Callback"
+  placeholder: "https://myshopify.io/ping/1"
+- 
+  key: x_url_cancel
+  name: "Url Cancel"
+  placeholder: "https://myshopify.io"
+- 
+  key: x_url_complete
+  name: "Url Complete"
+  placeholder: "https://myshopify.io/orders/1/done"
+- 
+  key: x_timestamp
+  name: Timestamp
+  placeholder: 2014-03-24 12:13:12 +00:00
