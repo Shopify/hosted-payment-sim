@@ -77,7 +77,7 @@
 - 
   key: x_customer_shipping_address2
   name: "Shipping Address 2"
-  placeholder: ~
+  placeholder: Suite 200
 - 
   key: x_customer_shipping_state
   name: "Shipping State"
