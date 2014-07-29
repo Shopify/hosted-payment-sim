@@ -17,7 +17,7 @@
 - 
   key: x_amount_tax
   name: "Amount Tax"
-  placeholder: "11.7"
+  placeholder: "11.70"
 - 
   key: x_reference
   name: Reference
