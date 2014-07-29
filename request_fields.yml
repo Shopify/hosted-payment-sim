@@ -9,19 +9,19 @@
 - 
   key: x_amount
   name: Amount
-  placeholder: 89.99
+  placeholder: "89.99"
 - 
   key: x_amount_shipping
   name: "Amount Shipping"
-  placeholder: 8.99
+  placeholder: "8.99"
 - 
   key: x_amount_tax
   name: "Amount Tax"
-  placeholder: 11.7
+  placeholder: "11.7"
 - 
   key: x_reference
   name: Reference
-  placeholder: 19783
+  placeholder: "19783"
 - 
   key: x_shop_country
   name: "Shop Country"
@@ -41,11 +41,11 @@
 - 
   key: x_invoice
   name: Invoice
-  placeholder: ~
+  placeholder: "#123"
 - 
   key: x_test
   name: Test
-  placeholder: true
+  placeholder: "true"
 - 
   key: x_customer_first_name
   name: "Customer First Name"
@@ -64,49 +64,49 @@
   placeholder: +1-613-987-6543
 - 
   key: x_customer_shipping_city
-  name: "Customer Shipping City"
-  placeholder: Transactionronto
+  name: "Shipping City"
+  placeholder: Toronto
 - 
   key: x_customer_shipping_company
-  name: "Customer Shipping Company"
+  name: "Shipping Company"
   placeholder: "Shopify Toronto"
 - 
   key: x_customer_shipping_address1
-  name: "Customer Shipping Address1"
+  name: "Shipping Address 1"
   placeholder: "241 Spadina Ave"
 - 
   key: x_customer_shipping_address2
-  name: "Customer Shipping Address2"
+  name: "Shipping Address 2"
   placeholder: ~
 - 
   key: x_customer_shipping_state
-  name: "Customer Shipping State"
+  name: "Shipping State"
   placeholder: true
 - 
   key: x_customer_shipping_zip
-  name: "Customer Shipping Zip"
+  name: "Shipping Zip"
   placeholder: "M5T 3A8"
 - 
   key: x_customer_shipping_country
-  name: "Customer Shipping Country"
+  name: "Shipping Country"
   placeholder: CA
 - 
   key: x_customer_shipping_phone
-  name: "Customer Shipping Phone"
+  name: "Shipping Phone"
   placeholder: +1-416-123-4567
 - 
   key: x_url_callback
-  name: "Url Callback"
+  name: "URL Callback"
   placeholder: "https://myshopify.io/ping/1"
 - 
   key: x_url_cancel
-  name: "Url Cancel"
+  name: "URL Cancel"
   placeholder: "https://myshopify.io"
 - 
   key: x_url_complete
-  name: "Url Complete"
+  name: "URL Complete"
   placeholder: "https://myshopify.io/orders/1/done"
 - 
   key: x_timestamp
   name: Timestamp
-  placeholder: 2014-03-24 12:13:12 +00:00
+  placeholder: "2014-03-24 12:13:12 +00:00"
