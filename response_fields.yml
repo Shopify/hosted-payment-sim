@@ -30,3 +30,7 @@
   key: x_result
   name: Result
   placeholder: completed
+- 
+  key: secret_key
+  name: Secret Key
+  placeholder: iU44RWxeik

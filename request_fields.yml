@@ -110,3 +110,7 @@
   key: x_timestamp
   name: Timestamp
   placeholder: "2014-03-24 12:13:12 +00:00"
+- 
+  key: secret_key
+  name: Secret Key
+  placeholder: iU44RWxeik
