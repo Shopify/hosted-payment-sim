@@ -44,7 +44,7 @@ class OffsiteGatewaySim < Sinatra::Base
     erb :calculator, :locals => {
       request_fields: request_fields,
       response_fields: response_fields,
-      signature: sign(fields, params['secret_key'] || @key)
+      signature: sign(fields.delete_if { |_, v| v.nil? }, params['secret_key'] || @key)
     }
   end
 
