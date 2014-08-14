@@ -15,7 +15,7 @@ Once we enable developer mode, which normally happens the same day, you'll be re
 
 1. [Sign in](http://www.shopify.com/login) to your Shopify store.
 2. Go to [Products](http://www.shopify.com/admin/products) and [add a dummy product](http://docs.shopify.com/manual/your-store/products/create-product).
-2. Go to [Settings/Checkout](http://www.shopify.com/admin/settings/payments), and select the **Universal Offsite Dev Kit** in the gateway dropdown.
+2. Go to [Settings/Payments](http://www.shopify.com/admin/settings/payments), and select the **Universal Offsite Dev Kit** in the gateway dropdown.
 3. Complete the 3 fields,
   + ``x_account_id`` - this is an identifier for a test merchant on your system
   + ``HMAC key`` - this is a key your gateway will use to verify requests and sign responses
