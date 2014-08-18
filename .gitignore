@@ -16,6 +16,3 @@ tmp
 .yardoc
 _yardoc
 doc/
-
-# Mac stuff
-.DS_Store
