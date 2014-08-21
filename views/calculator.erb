@@ -1,0 +1,39 @@
+<div class="t-pad center">
+  <% unless params.empty? %>
+    Generated Signature : <%= signature %>
+  <% end %>
+  <div class="pure-g">
+    <div class="pure-u-1-2">
+      <h2>Request</h2>
+      <form class="pure-form pure-form-aligned" method="get">
+        <fieldset>
+          <% for field in request_fields %>
+            <div class="pure-control-group">
+              <label for="<%= field['key'] %>"><%= field['name'] %></label>
+              <input id="<%= field['key'] %>" name="<%= field['key'] %>" type="text" placeholder="<%= field['placeholder'] %>">
+            </div>
+          <% end %>
+          <div class="pure-controls">
+            <button type="submit" class="pure-button pure-button-primary">Generate Signature</button>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+    <div class="pure-u-1-2">
+      <h2>Response</h2>
+      <form class="pure-form pure-form-aligned" method="get">
+        <fieldset>
+          <% for field in response_fields %>
+            <div class="pure-control-group">
+              <label for="<%= field['key'] %>"><%= field['name'] %></label>
+              <input id="<%= field['key'] %>" name="<%= field['key'] %>" type="text" placeholder="<%= field['placeholder'] %>">
+            </div>
+          <% end %>
+          <div class="pure-controls">
+            <button type="submit" name="" class="pure-button pure-button-primary">Generate Signature</button>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>

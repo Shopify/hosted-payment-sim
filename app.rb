@@ -17,8 +17,16 @@ class OffsiteGatewaySim < Sinatra::Base
     @fields ||= request.params.select {|k, v| k.start_with? 'x_'}
   end
 
-  def sign(fields)
-    Digest::HMAC.hexdigest(fields.sort.join, @key, Digest::SHA256)
+  def request_fields
+    YAML.load_file('request_fields.yml')
+  end
+
+  def response_fields
+    YAML.load_file('response_fields.yml')
+  end
+
+  def sign(fields, key=@key)
+    Digest::HMAC.hexdigest(fields.sort.join, key, Digest::SHA256)
   end
 
   get '/' do
@@ -30,6 +38,14 @@ class OffsiteGatewaySim < Sinatra::Base
     expected_signature = sign(fields.reject{|k,_| k == 'x_signature'})
     signature_ok = provided_signature && provided_signature.casecmp(expected_signature) == 0
     erb :post, :locals => {signature_ok: signature_ok}
+  end
+
+  get '/calculator' do
+    erb :calculator, :locals => {
+      request_fields: request_fields,
+      response_fields: response_fields,
+      signature: sign(fields.delete_if { |_, v| v.nil? }, params['secret_key'] || @key)
+    }
   end
 
   post '/execute/:action' do |action|
