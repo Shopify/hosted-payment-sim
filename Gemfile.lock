@@ -24,12 +24,14 @@ GEM
     launchy (2.4.2)
       addressable (~> 2.3)
     mime-types (2.3)
+    minitest (5.3.4)
     multi_json (1.10.1)
     multi_xml (0.5.5)
     netrc (0.7.7)
     rack (1.5.2)
     rack-protection (1.5.2)
       rack
+    rake (10.3.2)
     rest-client (1.6.7)
       mime-types (>= 1.16)
     rubyzip (1.1.4)
@@ -48,4 +50,6 @@ DEPENDENCIES
   heroku (~> 3.8.2)
   httparty
   json
+  minitest
+  rake
   sinatra

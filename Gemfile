@@ -5,6 +5,8 @@ gem 'sinatra'
 gem 'httparty'
 gem 'json'
 gem 'addressable'
+gem 'rake'
+gem 'minitest'
 
 group :development do
   gem 'byebug'
