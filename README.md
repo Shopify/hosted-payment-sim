@@ -24,6 +24,8 @@ Once we enable developer mode, which normally happens the same day, you'll be re
 
 > We are providing this simple implementation of an Offsite Gateway Sim as a way to demonstrate basics of this new API. If you want to see it in action, leave ``POST URL`` on your **Universal Offsite Dev Kit** empty, or set it to ``https://offsite-gateway-sim.herokuapp.com/``, then try placing another order in your test shop.
 
+> Note: The **Universal Offsite Dev Kit** will not support a separate ``POST URL`` for each merchant. However, you can get around this by using some field identifier (eg/ common prefix of the ``x_account_id`` field) as a basis to redirect from the POST URL to an appropriate hosted payment page based on that identifier.   
+
 ### Payment Flow
 
 + Customer initiates checkout on the Shopify storefront
@@ -59,8 +61,9 @@ OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha256'), 'secret key', message)
 
 ### Going Live
 
-As soon as you are confident that your implementation is complete, we'll need to collect some more information about your gateway,
+As soon as you are confident that your implementation is complete, please send another email to payment-integrations@shopify.com with the following details:
 
+  + A link to a live (non-test) order processed with the Universal DevKit. eg/ ``http://shopname.myshopify.com/orders/123123123``
   + Names for any fields that your gateway will require shops to input when setting it up within Shopify.
     + Your gateway name
     + Label for the ``x_account_id`` field, needs to match your existing terminology, e.g. ``Merchant ID`` or ``Account #``
@@ -69,7 +72,6 @@ As soon as you are confident that your implementation is complete, we'll need to
   + Your gateway's home page URL
   + Image to display to customers during checkout process that identifies your gateway's supported payment options (PNG, height: 20px, max width: 340px). You may or may not want to include your gateway's logo along with this list, depending on whether it will be recognized by customers on checkout.
   + Finally, please indicate whether or not your gateway supports ``x_test`` mode
-
 
 ### Request Values
 
