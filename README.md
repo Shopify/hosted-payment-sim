@@ -59,7 +59,7 @@ OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha256'), 'iU44RWxeik', message)
 "x_signature=06880fd563ff6ce535d06a80ce8f2c2b79f34925d57de750ac392bc2d23c74e56"
 ```
 
-> You may use the provided [Signature Calculator](http://offsite-gateway-sim.herokuapp.com/calculator) to confirm proper signature creation at any time.
+> You may use the provided [Signature Calculator](http://offsite-gateway-sim.herokuapp.com/calculator) to confirm that your signature generation function is working appropritately.
 
 ### Going Live
 
@@ -119,6 +119,6 @@ As soon as you are confident that your implementation is complete, please send a
 | ``x_test``              | true/false                                               | ✓         | true                                     | Echo request's ``x_test``                                               |
 | ``x_amount``            | decimal                                                  | ✓         | 89.99                                    | Echo request's ``x_amount``                                             |
 | ``x_gateway_reference`` | unicode string                                           | ✓         | 123                                      | Unique reference for the authorization issued by the payment processor. |
-| ``x_timestamp``         | [iso-8601](http://en.wikipedia.org/wiki/ISO_8601) in UTC | ✓         | 2014-03-24T12:15:41Z                     |                                                                         |
+| ``x_timestamp``         | [iso-8601](http://en.wikipedia.org/wiki/ISO_8601) in UTC | ✓         | 2014-03-24T12:15:41Z                     | UTC Time: YYYY-MM-DDTHH:MM:SSZ                                                                        |
 | ``x_result``            | fixed choice                                             | ✓         | completed                                | One of: completed, failed, pending                                      |
 | ``x_signature``         | hex string, case-insensitive                             | ✓         | 3a59e201a9b8692702b8c41dcba476d4a46e5f5c | See [Signing Mechanism](#signing-mechanism).                            |
