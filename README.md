@@ -46,18 +46,20 @@ All requests and responses must be signed/verified using ``HMAC-SHA256`` ([HMAC]
   + Resulting codes must be hex-encoded and passed as value of ``x_signature``
   + Make sure to use case-insensitive comparison when verifying provided ``x_signature`` values
 
-For example,
+For example, (assuming your ``HMAC key`` is "iU44RWxeik"):
 
 ```ruby
-fields = {x_account_id: 123, x_currency: 'USD'}
-=> {:x_account_id=>123, :x_currency=>"USD"}
+fields = {x_account_id: Z9s7Yt0Txsqbbx, x_amount: 89.99, x_currency: 'USD', x_gateway_reference: '123', x_reference: "19783", x_result: "completed", x_test: "true",  x_timestamp: '2014-03-24T12:15:41Z'}
+=> {:x_account_id=>Z9s7Yt0Txsqbbx, :x_amount=>89.99, :x_currency=>"USD", :x_gateway_reference=>"123", :x_reference=>"19783", :x_result=>"completed", :x_test=>"true", :x_timestamp=>"2014-03-24T12:15:41Z"}
 message = fields.sort.join
-=> "x_account_id123x_currencyUSD"
-OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha256'), 'secret key', message)
-=> "06ef4be2654e089b4aa346f970a71988fa3a1452acaa6273573f9db0c32ea355"
+=> "x_account_id123x_currencyUSDx_gateway_reference123x_reference19783x_resultcompletedx_testtruex_timestamp2014-03-24T12:15:41Z"
+OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha256'), 'iU44RWxeik', message)
+=> "06880fd563ff6ce535d06a80ce8f2c2b79f34925d57de750ac392bc2d23c74e56"
 
-"x_signature=06ef4be2654e089b4aa346f970a71988fa3a1452acaa6273573f9db0c32ea355"
+"x_signature=06880fd563ff6ce535d06a80ce8f2c2b79f34925d57de750ac392bc2d23c74e56"
 ```
+
+> You may use the provided [Signature Calculator](http://offsite-gateway-sim.herokuapp.com/calculator) to confirm that your signature generation function is working appropritately.
 
 ### Going Live
 
@@ -117,6 +119,6 @@ As soon as you are confident that your implementation is complete, please send a
 | ``x_test``              | true/false                                               | ✓         | true                                     | Echo request's ``x_test``                                               |
 | ``x_amount``            | decimal                                                  | ✓         | 89.99                                    | Echo request's ``x_amount``                                             |
 | ``x_gateway_reference`` | unicode string                                           | ✓         | 123                                      | Unique reference for the authorization issued by the payment processor. |
-| ``x_timestamp``         | [iso-8601](http://en.wikipedia.org/wiki/ISO_8601) in UTC | ✓         | 2014-03-24T12:15:41Z                     |                                                                         |
+| ``x_timestamp``         | [iso-8601](http://en.wikipedia.org/wiki/ISO_8601) in UTC | ✓         | 2014-03-24T12:15:41Z                     | UTC Time: YYYY-MM-DDTHH:MM:SSZ                                                                        |
 | ``x_result``            | fixed choice                                             | ✓         | completed                                | One of: completed, failed, pending                                      |
 | ``x_signature``         | hex string, case-insensitive                             | ✓         | 3a59e201a9b8692702b8c41dcba476d4a46e5f5c | See [Signing Mechanism](#signing-mechanism).                            |
