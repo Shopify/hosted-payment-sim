@@ -23,7 +23,7 @@
   name: "Gateway Reference"
   placeholder: "123"
 - 
-  key: x_timespamp
+  key: x_timestamp
   name: Timestamp
   placeholder: "2014-03-24T12:15:41Z"
 - 
