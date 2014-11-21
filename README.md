@@ -9,9 +9,9 @@ Follow these simple steps to get started.
 
 1. Review the rest of this document
 2. Sign up for a free trial of Shopify at http://www.shopify.com/. You will use this shop to place test orders against your offsite gateway.
-3. Send the name of this shop to payment-integrations@shopify.com and mention **Universal Offsite Dev Kit** in the subject
+3. Send an email to to payment-integrations@shopify.com with **Universal Offsite Dev Kit** in the subject. Be sure to include the name, url, description of the payment provider you wish to integrate, the markets it serves, your Shopify store URL, and your most recent Certificate of PCI Compliance (if you'll be accepting credit cards). 
 
-Once we enable developer mode, which normally happens the same day, you'll be ready to proceed with integration testing.
+Once we enable developer mode, which normally happens within 48 hours, you'll be ready to proceed with integration testing.
 
 1. [Sign in](http://www.shopify.com/login) to your Shopify store.
 2. Go to [Products](http://www.shopify.com/admin/products) and [add a dummy product](http://docs.shopify.com/manual/your-store/products/create-product).
