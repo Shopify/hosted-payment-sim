@@ -13,9 +13,10 @@ Follow these simple steps to get started.
   + Your Shopify store URL
   + Name, URL & description of the payment provider you wish to inegrate 
   + Markets served by this integration
+  + List of major supported payment methods, including all credit card brands offered
   + Your most recent Certificate of PCI Compliance (if you'll be accepting credit cards)
   + Provider logo (minimum resolution 500 x 500 pixels) in vector format (SVG) or raster format (PNG), with a transparent background
-  + List of major supported payment methods, including all credit card brands offered
+  + Test credentials for the integration
 
 Once we enable developer mode, which normally happens within 48 hours, you'll be ready to proceed with integration testing.
 
