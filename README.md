@@ -9,7 +9,12 @@ Follow these simple steps to get started.
 
 1. Review the rest of this document
 2. Sign up for a free trial of Shopify at http://www.shopify.com/. You will use this shop to place test orders against your offsite gateway.
-3. Send an email to to payment-integrations@shopify.com with **Universal Offsite Dev Kit** in the subject. Be sure to include the name, url, description of the payment provider you wish to integrate, the markets it serves, your Shopify store URL, and your most recent Certificate of PCI Compliance (if you'll be accepting credit cards). 
+3. Send an email to to payment-integrations@shopify.com with **Universal Offsite Dev Kit** in the subject. Be sure to include:
+  + Your Shopify store URL
+  + Name, URL & description of the payment provider you wish to integrate 
+  + Markets served by this integration
+  + List of major supported payment methods, including all credit card brands offered
+  + Your most recent Certificate of PCI Compliance (if you'll be accepting credit cards)
 
 Once we enable developer mode, which normally happens within 48 hours, you'll be ready to proceed with integration testing.
 
@@ -71,8 +76,10 @@ As soon as you are confident that your implementation is complete, please send a
     + Label for the ``x_account_id`` field, needs to match your existing terminology, e.g. ``Merchant ID`` or ``Account #``
     + Label for the ``HMAC key`` field, needs to match your existing terminology, e.g. ``Key`` or ``Shared Secret``
   + URL of a POST handler for [Request Values](#request-values) that presents a payment flow to the customer, likely the same one you used to configure *Universal Offsite Dev Kit* gateway during integration testing
+  + Test credentials for the integration
   + Your gateway's home page URL
-  + Image to display to customers during checkout process that identifies your gateway's supported payment options (PNG, height: 20px, max width: 340px). You may or may not want to include your gateway's logo along with this list, depending on whether it will be recognized by customers on checkout.
+  + Provider logo (minimum resolution 500 x 500 pixels) in vector format (SVG) or raster format (PNG), with a transparent background
+  + Image to display to customers during checkout process that identifies your gateway's supported payment options (PNG, height: 20px, max width: 340px). 
   + Finally, please indicate whether or not your gateway supports ``x_test`` mode
 
 ### Request Values
