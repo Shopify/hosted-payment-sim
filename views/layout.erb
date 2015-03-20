@@ -6,15 +6,15 @@
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" >
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Varela+Round">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro">
-  <link rel="stylesheet" href="/pure-min.css">
-  <link rel="stylesheet" href="/style.css">
-  <link rel="stylesheet" href="/tipr.css">
+  <link rel="stylesheet" href="<%= @base_path %>/pure-min.css">
+  <link rel="stylesheet" href="<%= @base_path %>/style.css">
+  <link rel="stylesheet" href="<%= @base_path %>/tipr.css">
 </head>
 <body>
 <div class="pure-g">
   <div class="pure-u-1-1 main-box">
     <div class="center">
-      <img style="vertical-align: middle;" src="/shopify.png"/>
+      <img style="vertical-align: middle;" src="<%= @base_path %>/shopify.png"/>
       <span class="title">offsite gateway sim</span>
       <a class="pure-button button-small" href="https://github.com/Shopify/offsite-gateway-sim">
           <i class="fa fa-github"></i>
@@ -25,7 +25,7 @@
   </div>
 </div>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="/tipr.js"></script>
+<script src="<%= @base_path %>/tipr.js"></script>
 <script>
   $(document).ready(function() {
     $('.tip').tipr();

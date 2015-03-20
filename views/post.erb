@@ -13,7 +13,7 @@
               <td><code><%= k %></code></td>
               <td>
                 <% if k == 'x_signature' %>
-                  <img style="vertical-align: middle;" src="/<%= signature_ok ? 'yes' : 'no' %>.png"/>
+                <img style="vertical-align: middle;" src="<%= @base_path %>/<%= signature_ok ? 'yes' : 'no' %>.png"/>
                 <% end %>
                 <code><%= v %></code>
               </td>
