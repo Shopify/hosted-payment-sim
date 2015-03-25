@@ -8,7 +8,8 @@ require 'byebug' if development?
 
 class OffsiteGatewaySim < Sinatra::Base
 
-  def initialize
+  def initialize(base_path: '')
+    @base_path = base_path
     @key = 'iU44RWxeik'
     super
   end
