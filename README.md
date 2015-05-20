@@ -78,8 +78,7 @@ As soon as you are confident that your implementation is complete, please send a
   + URL of a POST handler for [Request Values](#request-values) that presents a payment flow to the customer, likely the same one you used to configure *Universal Offsite Dev Kit* gateway during integration testing
   + Test credentials for the integration
   + Your gateway's home page URL
-  + Provider logo (minimum resolution 500 x 500 pixels) in vector format (SVG) or raster format (PNG), with a transparent background
-  + Image to display to customers during checkout process that identifies your gateway's supported payment options (PNG, height: 20px, max width: 340px). 
+  + High resolution version of the Provider logo in vector format (SVG) or raster format (PNG), with a transparent background
   + Finally, please indicate whether or not your gateway supports ``x_test`` mode
 
 ### Request Values
