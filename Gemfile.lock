@@ -1,5 +1,5 @@
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
     addressable (2.3.5)
     byebug (2.7.0)
@@ -27,7 +27,7 @@ GEM
     multi_json (1.10.1)
     multi_xml (0.5.5)
     netrc (0.7.7)
-    rack (1.5.2)
+    rack (1.6.2)
     rack-protection (1.5.2)
       rack
     rack-test (0.6.2)
@@ -52,3 +52,6 @@ DEPENDENCIES
   json
   rack-test
   sinatra
+
+BUNDLED WITH
+   1.10.4
