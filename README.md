@@ -79,6 +79,8 @@ As soon as you are confident that your implementation is complete, please send a
   + Test credentials for the integration
   + Your gateway's home page URL
   + High resolution version of the Provider logo in vector format (SVG) or raster format (PNG), with a transparent background
+  + Screenshots of checkout screens for both successful and failed checkout attempts
+  + Setup steps for merchants that would like to configure your gateway with their Shopify store
   + Finally, please indicate whether or not your gateway supports ``x_test`` mode
 
 ### Request Values
