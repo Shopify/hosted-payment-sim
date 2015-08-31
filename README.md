@@ -1,4 +1,4 @@
-Hosted Payment SDK Simulator
+Hosted Payment Simulator
 ===========================
 
 This tool will allow you to simulate the redirects and callbacks needed to build an integration using the [Hosted Payment SDK](https://docs.shopify.com/hosted-payment-sdk). It also serves as a [calculator](https://offsite-gateway-sim.herokuapp.com/calculator) that can be used to verify your signature algorithm.
