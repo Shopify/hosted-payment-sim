@@ -41,6 +41,13 @@ class OffsiteGatewaySim < Sinatra::Base
     erb :post, :locals => {signature_ok: signature_ok}
   end
 
+  post '/incontext' do
+    provided_signature = fields['x_signature']
+    expected_signature = sign(fields.reject{|k,_| k == 'x_signature'})
+    signature_ok = provided_signature && provided_signature.casecmp(expected_signature) == 0
+    erb :incontext, :locals => {signature_ok: signature_ok}
+  end
+
   get '/calculator' do
     erb :calculator, :locals => {
       request_fields: request_fields,
