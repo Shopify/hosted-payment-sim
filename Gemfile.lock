@@ -52,6 +52,3 @@ DEPENDENCIES
   json
   rack-test
   sinatra
-
-BUNDLED WITH
-   1.10.4
