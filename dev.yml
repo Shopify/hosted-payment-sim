@@ -1,0 +1,37 @@
+name: hosted-payment-sim
+
+up:
+  - homebrew:
+    - openssl
+  - ruby:
+      version: ruby-2.1.8
+  - railgun
+  - bundler
+
+commands:
+  console:
+    syntax: ''
+    desc: 'open a console with the app loaded'
+    run: bundle exec irb -r ./app.rb
+  server:
+    syntax: ''
+    desc: 'start a rack server'
+    run: bundle exec rackup -o 192.168.64.1 -p 20000
+  test:
+    syntax: ''
+    desc: 'run app tests'
+    run: bundle exec ruby test/app_test.rb
+
+open:
+  'Hosted Payment Simulator': https://hosted-payment-sim.myshopify.io
+
+railgun:
+  image: railgun-update.shopify.io:railgun-common-services-0.1.4
+  services:
+    nginx: 80
+  ip_address: 192.168.64.37
+  memory: 2G
+  cores: 2
+  disk: 2G
+  proxy:
+    hosted-payment-sim.myshopify.io: 20000
