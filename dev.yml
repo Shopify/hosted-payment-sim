@@ -26,7 +26,7 @@ open:
   'Hosted Payment Simulator': https://hosted-payment-sim.myshopify.io
 
 railgun:
-  image: railgun-update.shopify.io:railgun-common-services-0.1.4
+  image: dev:railgun-common-services-0.2.x
   services:
     nginx: 80
   ip_address: 192.168.64.37
