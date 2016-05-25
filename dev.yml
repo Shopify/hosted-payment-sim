@@ -3,8 +3,7 @@ name: hosted-payment-sim
 up:
   - homebrew:
     - openssl
-  - ruby:
-      version: ruby-2.1.8
+  - ruby: 2.1.8
   - railgun
   - bundler
 
