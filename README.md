@@ -16,6 +16,6 @@ To use the simulator please familiarize yourself with the [Hosted Payment SDK](h
 
 ![Offsite Gateway](/offsite-gateway-sim-page.png)
 
-The various buttons will allow you to simulate the callbacks and redirects required in for integration.
+The various buttons will allow you to simulate the callbacks and redirects required in your integration.
 
 Please email payment-integrations@shopify.com if you have any questions.
