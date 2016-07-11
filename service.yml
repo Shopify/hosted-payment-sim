@@ -2,5 +2,5 @@
 # https://services.shopify.io/services/hosted-payment-sim/production
 director: lyverovski
 owners:
-- Shopify/shopify-payments
+- @Shopify/payment-integrations
 classification: tier4
