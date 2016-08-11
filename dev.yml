@@ -34,3 +34,7 @@ railgun:
   disk: 2G
   proxy:
     hosted-payment-sim.myshopify.io: 20000
+
+packages:
+  - git@github.com:Shopify/dev-shopify.git
+
