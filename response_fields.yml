@@ -1,36 +1,40 @@
-- 
+-
   key: x_account_id
-  name: "Account ID"
-  placeholder: Z9s7Yt0Txsqbbx
-- 
+  name: x_account_id
+  placeholder: "Z9s7Yt0Txsqbbx"
+-
   key: x_reference
-  name: Reference
+  name: x_reference
   placeholder: "19783"
-- 
+-
   key: x_currency
-  name: Currency
-  placeholder: USD
-- 
+  name: x_currency
+  placeholder: "USD"
+-
   key: x_test
-  name: Test
+  name: x_test
   placeholder: "true"
-- 
+-
   key: x_amount
-  name: Amount
+  name: x_amount
   placeholder: "89.99"
-- 
+-
   key: x_gateway_reference
-  name: "Gateway Reference"
+  name: x_gateway_reference
   placeholder: "123"
-- 
+-
   key: x_timestamp
-  name: Timestamp
+  name: x_timestamp
   placeholder: "2014-03-24T12:15:41Z"
-- 
+-
   key: x_result
-  name: Result
-  placeholder: completed
-- 
+  name: x_result
+  placeholder: "completed"
+-
+  key: x_message
+  name: x_message
+  placeholder: "custom error message"
+-
   key: secret_key
-  name: Secret Key
-  placeholder: iU44RWxeik
+  name: secret_key
+  placeholder: "iU44RWxeik"

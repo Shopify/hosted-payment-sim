@@ -52,7 +52,7 @@ class OffsiteGatewaySim < Sinatra::Base
     erb :calculator, :locals => {
       request_fields: request_fields,
       response_fields: response_fields,
-      signature: sign(fields.delete_if { |_, v| v.nil? }, params['secret_key'] || @key)
+      signature: sign(fields.delete_if { |_, v| v.empty? }, params['secret_key'] || @key)
     }
   end
 
@@ -68,6 +68,9 @@ class OffsiteGatewaySim < Sinatra::Base
       'x_gateway_reference' => SecureRandom.hex,
       'x_timestamp'         => ts
       }
+    if action == "failed"
+      payload['x_message'] = "This is a custom error message."
+    end
     payload['x_signature'] = sign(payload)
     result = {timestamp: ts}
     redirect_url = Addressable::URI.parse(fields['x_url_complete'])
