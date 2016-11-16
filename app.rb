@@ -15,7 +15,11 @@ class OffsiteGatewaySim < Sinatra::Base
   end
 
   def fields
-    @fields ||= request.params.select {|k, v| k.start_with? 'x_'}
+    @fields ||= if request.content_type == 'application/json'
+      JSON.load(request.body.read)
+    else
+      request.params.select { |k, v| k.start_with?('x_') }
+    end
   end
 
   def request_fields
@@ -30,22 +34,22 @@ class OffsiteGatewaySim < Sinatra::Base
     Digest::HMAC.hexdigest(fields.sort.join, key, Digest::SHA256)
   end
 
+  def signature_valid?
+    provided_signature = fields['x_signature']
+    expected_signature = sign(fields.reject{|k,_| k == 'x_signature'})
+    provided_signature && provided_signature.casecmp(expected_signature) == 0
+  end
+
   get '/' do
-    erb :get, :locals => {key: @key}
+    erb :get, :locals => { key: @key }
   end
 
   post '/' do
-    provided_signature = fields['x_signature']
-    expected_signature = sign(fields.reject{|k,_| k == 'x_signature'})
-    signature_ok = provided_signature && provided_signature.casecmp(expected_signature) == 0
-    erb :post, :locals => {signature_ok: signature_ok}
+    erb :post, :locals => { signature_ok: signature_valid? }
   end
 
   post '/incontext' do
-    provided_signature = fields['x_signature']
-    expected_signature = sign(fields.reject{|k,_| k == 'x_signature'})
-    signature_ok = provided_signature && provided_signature.casecmp(expected_signature) == 0
-    erb :incontext, :locals => {signature_ok: signature_ok}
+    erb :incontext, :locals => { signature_ok: signature_valid? }
   end
 
   get '/calculator' do
@@ -54,6 +58,28 @@ class OffsiteGatewaySim < Sinatra::Base
       response_fields: response_fields,
       signature: sign(fields.delete_if { |_, v| v.empty? }, params['secret_key'] || @key)
     }
+  end
+
+  post '/capture' do
+    content_type :json
+
+    if signature_valid?
+      200
+    else
+      [401, {}, { x_status: 'failed', x_error_message: 'Invalid signature' }.to_json]
+    end
+  end
+
+  post '/refund' do
+    content_type :json
+
+    if signature_valid?
+      [200, {}, fields.merge(x_status: 'success',
+                             x_gateway_reference: SecureRandom.hex,
+                             x_timestamp: Time.now.utc.iso8601).to_json]
+    else
+      [401, {}, { x_status: 'failed', x_error_message: 'Invalid signature' }.to_json]
+    end
   end
 
   post '/execute/:action' do |action|
@@ -90,5 +116,4 @@ class OffsiteGatewaySim < Sinatra::Base
   end
 
   run! if app_file == $0
-
 end
