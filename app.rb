@@ -72,8 +72,13 @@ class OffsiteGatewaySim < Sinatra::Base
     end
   end
 
+<<<<<<< HEAD
   get '/notification' do
     erb :notification
+=======
+  get '/refund_notification' do
+    erb :refund_notification
+>>>>>>> add a view to send refund notification to a shopify shop
   end
 
   post '/execute/?:action?' do |action|
@@ -84,10 +89,11 @@ class OffsiteGatewaySim < Sinatra::Base
       'x_currency'          => fields['x_currency'],
       'x_test'              => fields['x_test'],
       'x_amount'            => fields['x_amount'],
-      'x_result'            => action,
+      'x_result'            => fields['x_result'] || action,
       'x_gateway_reference' => SecureRandom.hex,
       'x_timestamp'         => ts
     }
+
     %w(x_transaction_type x_message x_result).each do |field|
       payload[field] = fields[field] if fields[field]
     end
@@ -116,5 +122,6 @@ class OffsiteGatewaySim < Sinatra::Base
     end
     result.to_json
   end
+
   run! if app_file == $0
 end
