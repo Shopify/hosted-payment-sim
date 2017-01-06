@@ -1,0 +1,45 @@
+<div class="t-pad center">
+  <div class="pure-g">
+    <div class="pure-u-1-2">
+      <h2>Refund Notification</h2>
+      <form class="pure-form pure-form-aligned" method="post" action="/execute?fire_callback=true">
+        <fieldset>
+          <div class="pure-control-group">
+            <label for="x_account_id">x_account_id</label>
+            <input id="x_account_id" name="x_account_id" type="text">
+          </div>
+          <div class="pure-control-group">
+            <label for="x_reference">x_reference</label>
+            <input id="x_reference" name="x_reference" type="text">
+           </div>
+           <div class="pure-control-group">
+             <label for="x_currency">x_currency</label>
+             <input id="x_currency" name="x_currency" type="text" value="USD">
+            </div>
+            <div class="pure-control-group">
+              <label for="x_amount">x_amount</label>
+              <input id="x_amount" name="x_amount" type="text" placeholder="1.0">
+            </div>
+          <div class="pure-control-group">
+            <label for="x_transaction_type">x_transaction_type</label>
+            <input id="x_transaction_type" name="x_transaction_type" type="text" value="refund" readonly>
+          </div>
+          <div class="pure-control-group">
+            <label for="x_result">x_result</label>
+            <select id="x_result" name="x_result">
+              <option name="completed">completed</option>
+              <option name="failed">failed</option>
+            </select>
+          </div>
+          <div class="pure-control-group">
+            <label for="x_url_callback">x_url_callback</label>
+            <input id="x_url_callback" name="x_url_callback" type="text" placeholder="https://checkout.shopify.com/services/ping/notify_integration/<gateway>/<shop_id>">
+          </div>
+          <div class="pure-controls">
+            <button type="submit" class="pure-button pure-button-primary">Send refund notification</button>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>

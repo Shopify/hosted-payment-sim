@@ -82,7 +82,11 @@ class OffsiteGatewaySim < Sinatra::Base
     end
   end
 
-  post '/execute/:action' do |action|
+  get '/refund_notification' do
+    erb :refund_notification
+  end
+
+  post '/execute/?:action?' do |action|
     ts = Time.now.utc.iso8601
     payload = {
       'x_account_id'        => fields['x_account_id'],
@@ -90,30 +94,35 @@ class OffsiteGatewaySim < Sinatra::Base
       'x_currency'          => fields['x_currency'],
       'x_test'              => fields['x_test'],
       'x_amount'            => fields['x_amount'],
-      'x_result'            => action,
+      'x_result'            => fields['x_result'] || action,
       'x_gateway_reference' => SecureRandom.hex,
       'x_timestamp'         => ts
-      }
+    }
+    payload['x_transaction_type'] = fields['x_transaction_type'] if fields['x_transaction_type']
+
     if action == "failed"
       payload['x_message'] = "This is a custom error message."
     end
     payload['x_signature'] = sign(payload)
     result = {timestamp: ts}
-    redirect_url = Addressable::URI.parse(fields['x_url_complete'])
-    redirect_url.query_values = payload
+    redirect_url = if fields['x_url_complete']
+      uri = Addressable::URI.parse(fields['x_url_complete'])
+      uri.query_values = payload
+      uri
+    end
+
     if request.params['fire_callback'] == 'true'
       callback_url = fields['x_url_callback']
       response = HTTParty.post(callback_url, body: payload)
       if response.code == 200
-        result[:redirect] = redirect_url
+        result[:redirect] = redirect_url if redirect_url
       else
         result[:error] = response
       end
     else
-      result[:redirect] = redirect_url
+      result[:redirect] = redirect_url if redirect_url
     end
     result.to_json
   end
-
   run! if app_file == $0
 end
