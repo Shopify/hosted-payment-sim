@@ -82,8 +82,8 @@ class OffsiteGatewaySim < Sinatra::Base
     end
   end
 
-  get '/refund_notification' do
-    erb :refund_notification
+  get '/notification' do
+    erb :notification
   end
 
   post '/execute/?:action?' do |action|
@@ -94,11 +94,13 @@ class OffsiteGatewaySim < Sinatra::Base
       'x_currency'          => fields['x_currency'],
       'x_test'              => fields['x_test'],
       'x_amount'            => fields['x_amount'],
-      'x_result'            => fields['x_result'] || action,
+      'x_result'            => action,
       'x_gateway_reference' => SecureRandom.hex,
       'x_timestamp'         => ts
     }
-    payload['x_transaction_type'] = fields['x_transaction_type'] if fields['x_transaction_type']
+    %w(x_transaction_type x_message x_result).each do |field|
+      payload[field] = fields[field] if fields[field]
+    end
 
     if action == "failed"
       payload['x_message'] = "This is a custom error message."
