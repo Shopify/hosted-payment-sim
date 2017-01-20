@@ -22,12 +22,18 @@
             </div>
           <div class="pure-control-group">
             <label for="x_transaction_type">x_transaction_type</label>
-            <input id="x_transaction_type" name="x_transaction_type" type="text" value="refund" readonly>
+            <select id="x_transaction_type" name="x_transaction_type">
+              <option name="authorization">authorization</option>
+              <option name="capture">capture</option>
+              <option name="refund">refund</option>
+              <option name="void">void</option>
+            </select>
           </div>
           <div class="pure-control-group">
             <label for="x_result">x_result</label>
             <select id="x_result" name="x_result">
               <option name="completed">completed</option>
+              <option name="pending">pending</option>
               <option name="failed">failed</option>
             </select>
           </div>
