@@ -60,17 +60,7 @@ class OffsiteGatewaySim < Sinatra::Base
     }
   end
 
-  post '/capture' do
-    content_type :json
-
-    if signature_valid?
-      200
-    else
-      [401, {}, { x_status: 'failed', x_error_message: 'Invalid signature' }.to_json]
-    end
-  end
-
-  post '/refund' do
+  post %r{/(capture|refund)} do |action|
     content_type :json
 
     if signature_valid?
