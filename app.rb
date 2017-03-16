@@ -60,11 +60,11 @@ class OffsiteGatewaySim < Sinatra::Base
     }
   end
 
-  post %r{/(capture|refund)} do |action|
+  post %r{/(capture|refund|void)} do |action|
     content_type :json
 
     if signature_valid?
-      [200, {}, fields.merge(x_status: 'success',
+      [200, {}, fields.merge(x_result: 'pending',
                              x_gateway_reference: SecureRandom.hex,
                              x_timestamp: Time.now.utc.iso8601).to_json]
     else
