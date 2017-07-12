@@ -15,6 +15,10 @@
   name: x_reference
   placeholder: "19783"
 -
+  key: x_shopify_order_id
+  name: x_shopify_order_id
+  placeholder: "5160080594"
+-
   key: x_shop_country
   name: x_shop_country
   placeholder: "US"
