@@ -60,21 +60,19 @@ class OffsiteGatewaySim < Sinatra::Base
     }
   end
 
-  post '/capture' do
+<<<<<<< HEAD
+  post %r{/(capture|refund|void)} do |action|
     content_type :json
 
     if signature_valid?
-      200
-    else
-      [401, {}, { x_status: 'failed', x_error_message: 'Invalid signature' }.to_json]
-    end
-  end
-
-  post '/refund' do
+      [200, {}, fields.merge(x_result: 'pending',
+=======
+  post %r{/(capture|refund)} do |action|
     content_type :json
 
     if signature_valid?
       [200, {}, fields.merge(x_status: 'success',
+>>>>>>> refactor capture/refund in one action
                              x_gateway_reference: SecureRandom.hex,
                              x_timestamp: Time.now.utc.iso8601).to_json]
     else
@@ -82,7 +80,21 @@ class OffsiteGatewaySim < Sinatra::Base
     end
   end
 
-  post '/execute/:action' do |action|
+<<<<<<< HEAD
+<<<<<<< HEAD
+  get '/notification' do
+    erb :notification
+=======
+  get '/refund_notification' do
+    erb :refund_notification
+>>>>>>> add a view to send refund notification to a shopify shop
+=======
+  get '/notification' do
+    erb :notification
+>>>>>>> rename refund_notification to notification
+  end
+
+  post '/execute/?:action?' do |action|
     ts = Time.now.utc.iso8601
     payload = {
       'x_account_id'        => fields['x_account_id'],
@@ -93,24 +105,32 @@ class OffsiteGatewaySim < Sinatra::Base
       'x_result'            => action,
       'x_gateway_reference' => SecureRandom.hex,
       'x_timestamp'         => ts
-      }
+    }
+    %w(x_transaction_type x_message x_result).each do |field|
+      payload[field] = fields[field] if fields[field]
+    end
+
     if action == "failed"
       payload['x_message'] = "This is a custom error message."
     end
     payload['x_signature'] = sign(payload)
     result = {timestamp: ts}
-    redirect_url = Addressable::URI.parse(fields['x_url_complete'])
-    redirect_url.query_values = payload
+    redirect_url = if fields['x_url_complete']
+      uri = Addressable::URI.parse(fields['x_url_complete'])
+      uri.query_values = payload
+      uri
+    end
+
     if request.params['fire_callback'] == 'true'
       callback_url = fields['x_url_callback']
       response = HTTParty.post(callback_url, body: payload)
       if response.code == 200
-        result[:redirect] = redirect_url
+        result[:redirect] = redirect_url if redirect_url
       else
         result[:error] = response
       end
     else
-      result[:redirect] = redirect_url
+      result[:redirect] = redirect_url if redirect_url
     end
     result.to_json
   end
