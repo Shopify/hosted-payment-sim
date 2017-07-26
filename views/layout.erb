@@ -31,6 +31,7 @@
     $('.tip').tipr();
     $('a.execute').on('click',function(){
       data = <%= fields.to_json %>
+      data.x_transaction_type = $('#transaction-type').val();
       action = $(this).attr('data-result')
       fire_callback = $(this).attr('data-callback')
       url = "execute/" + action + "?fire_callback=" + fire_callback

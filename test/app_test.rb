@@ -65,41 +65,47 @@ class OffsiteGatewaySimTest < Test::Unit::TestCase
     assert last_response.body.include?('x_message')
   end
 
-  def test_post_successful_refund
-    fields = RESPONSE_FIELDS.merge(
-      x_transaction_type: 'refund',
-      x_signature: '1fab8337eae73be8e3090d5a89a2b40630e1e44a4e85ff1a2d08e3da662fd1c7'
-    )
+  %w(capture refund void).each do |type|
+    define_method "test_post_#{type}_with_valid_signature" do
+      fields = sign(RESPONSE_FIELDS.merge(x_transaction_type: type))
 
-    expected_response_keys = [
-      'x_account_id',
-      'x_reference',
-      'x_currency',
-      'x_test',
-      'x_amount',
-      'x_gateway_reference',
-      'x_timestamp',
-      'x_transaction_type',
-      'x_signature',
-      'x_status'
-    ]
+      expected_response_keys = %w(
+        x_account_id
+        x_reference
+        x_currency
+        x_test
+        x_amount
+        x_gateway_reference
+        x_timestamp
+        x_transaction_type
+        x_signature
+        x_result
+      )
 
-    post '/refund', fields
-    assert last_response.ok?
-    assert_equal 200, last_response.status
-    last_response.body.include?('success')
-    assert_equal 'application/json', last_response.header['content-type']
-    assert expected_response_keys.all? { |k| JSON.parse(last_response.body).key? k }
+      post "/#{type}", fields
+
+      assert last_response.ok?
+      assert_equal 'application/json', last_response.header['content-type']
+      assert expected_response_keys.all? { |k| JSON.parse(last_response.body).key? k }
+    end
+
+    define_method "test_post_#{type}_with_invalid_signature" do
+      fields = RESPONSE_FIELDS.merge(
+        x_transaction_type: type,
+        x_signature: 'incorrect'
+      )
+
+      post "/#{type}", fields
+
+      assert_equal 401, last_response.status
+      last_response.body.include?('failed')
+    end
   end
 
-  def test_post_failed_refund
-    fields = RESPONSE_FIELDS.merge(
-      x_transaction_type: 'refund',
-      x_signature: 'incorrect'
-    )
+  private
 
-    post '/refund', fields
-    assert_equal 401, last_response.status
-    last_response.body.include?('failed')
+  def sign(fields)
+    signature = Digest::HMAC.hexdigest(fields.sort.join, 'iU44RWxeik', Digest::SHA256)
+    fields.merge(x_signature: signature)
   end
 end
