@@ -3,34 +3,16 @@ GEM
   specs:
     addressable (2.4.0)
     byebug (8.2.2)
-    excon (0.48.0)
-    heroku (3.8.4)
-      heroku-api (~> 0.3.17)
-      launchy (>= 0.3.2)
-      netrc (~> 0.7.7)
-      rest-client (~> 1.6.1)
-      rubyzip
-    heroku-api (0.3.23)
-      excon (~> 0.44)
-      multi_json (~> 1.8)
     httparty (0.13.7)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
     json (1.8.3)
-    launchy (2.4.3)
-      addressable (~> 2.3)
-    mime-types (1.25.1)
-    multi_json (1.11.2)
     multi_xml (0.5.5)
-    netrc (0.7.9)
     rack (1.6.4)
     rack-protection (1.5.3)
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
-    rest-client (1.6.9)
-      mime-types (~> 1.16)
-    rubyzip (1.2.1)
     sinatra (1.4.7)
       rack (~> 1.5)
       rack-protection (~> 1.4)
@@ -43,7 +25,6 @@ PLATFORMS
 DEPENDENCIES
   addressable
   byebug
-  heroku (~> 3.8.2)
   httparty
   json
   rack-test
