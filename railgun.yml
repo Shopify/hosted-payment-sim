@@ -1,0 +1,17 @@
+# https://dev-accel.shopify.io/dev/railgun/Railgun-Config
+name: hosted-payment-sim
+
+vm:
+  image:      /opt/dev/misc/railgun-images/default
+  ip_address: 192.168.64.37
+  memory:     2G
+  cores:      2
+
+volumes:
+  root: 2G
+
+services:
+  - nginx
+
+hostnames:
+  - hosted-payment-sim.myshopify.io: { proxy_to_host_port: 20000 }
