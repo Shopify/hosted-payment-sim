@@ -24,19 +24,6 @@ commands:
 open:
   'Hosted Payment Simulator': https://hosted-payment-sim.myshopify.io
 
-railgun:
-  image: dev:railgun-common-services-0.2.x
-  services:
-    nginx: 80
-  ip_address: 192.168.64.37
-  memory: 2G
-  cores: 2
-  disk: 2G
-  proxy:
-    hosted-payment-sim.myshopify.io: 20000
-  hostnames:
-    - hosted-payment-sim.myshopify.io
-
 packages:
   - git@github.com:Shopify/dev-shopify.git
 
