@@ -104,7 +104,7 @@
   placeholder: "Shopify Toronto"
 -
   key: x_customer_billing_address1
-  name: x_customer_billing_address
+  name: x_customer_billing_address1
   placeholder: "241 Spadina Ave"
 -
   key: x_customer_billing_address2
