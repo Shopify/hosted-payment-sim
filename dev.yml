@@ -23,7 +23,3 @@ commands:
 
 open:
   'Hosted Payment Simulator': https://hosted-payment-sim.myshopify.io
-
-packages:
-  - git@github.com:Shopify/dev-shopify.git
-
