@@ -1,6 +1,0 @@
-dependencies:
-  override: []
-
-deploy:
-  override:
-    - push-to-heroku offsite-gateway-sim
