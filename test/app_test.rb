@@ -105,7 +105,7 @@ class OffsiteGatewaySimTest < Test::Unit::TestCase
   private
 
   def sign(fields)
-    signature = Digest::HMAC.hexdigest(fields.sort.join, 'iU44RWxeik', Digest::SHA256)
+    signature = OpenSSL::HMAC.hexdigest("SHA256", 'iU44RWxeik', fields.sort.join)
     fields.merge(x_signature: signature)
   end
 end
